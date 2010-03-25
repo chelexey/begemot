@@ -65,6 +65,9 @@ public class ImageCache {
     }    
     
     public static boolean addImageToCache(String pictureId, Bitmap image) {
+    	if (image == null || pictureId.length() == 0) {
+    		return false;
+    	}
     	try {
 			ensureCache();
 		} catch (IOException e) {
@@ -88,6 +91,10 @@ public class ImageCache {
     }
     
     public static Bitmap loadImageFromCache(String imageId) {
+    	if (imageId.length() == 0) {
+    		return null;
+    	}
+
     	File cacheDirectory = getCacheDirectory();
     	
     	File imageFile = new File(cacheDirectory, imageId);
